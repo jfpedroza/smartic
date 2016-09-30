@@ -1,0 +1,2 @@
+# smartic
+School management software
