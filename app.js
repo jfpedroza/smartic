@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var config = require('./config/database'); // get db config file
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -67,7 +69,7 @@ app.use((err, req, res, next) => {
 // Use native Node promises
 mongoose.Promise = global.Promise;
 // connect to MongoDB
-mongoose.connect('mongodb://localhost/smartic')
+mongoose.connect(config.database)
     .then(() =>  console.log('Connection to database successful'))
     .catch((err) => console.error(err));
 
