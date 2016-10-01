@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var MatriculaSchema = new Schema({
+    institucionId: ObjectId,
     periodoLectivo: {
         type: Number,
         min: 1900
@@ -20,7 +21,10 @@ var MatriculaSchema = new Schema({
             "PreMatricula"
         ]
     },
-    fecha: Date,
+    fecha: {
+        type: Date,
+        default: Date.now()
+    },
     estado: {
         type: String,
         enum: [

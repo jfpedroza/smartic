@@ -41,7 +41,11 @@ var EstudianteSchema = new Schema({
     },
     fechaInscripcion: Date,
     matriculaId: ObjectId,
-    fotoURL: String
+    fotoURL: String,
+    fecha: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 EstudianteSchema.virtual('nombre.completo').get(() => {

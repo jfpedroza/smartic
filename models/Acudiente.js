@@ -50,7 +50,10 @@ var AcudienteSchema = new Schema({
         },
         titulo: String
     },
-    fecha: Date
+    fecha: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 AcudienteSchema.virtual('nombre.completo').get(() => {

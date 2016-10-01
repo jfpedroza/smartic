@@ -7,9 +7,13 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var MensajeSchema = new Schema({
+    institucionId: ObjectId,
     emisorId: ObjectId,
     receptorId: ObjectId,
-    fecha: Date,
+    fecha: {
+        type: Date,
+        default: Date.now()
+    },
     contenido: String
 });
 

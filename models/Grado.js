@@ -4,8 +4,10 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
 var GradoSchema = new Schema({
+    institucionId: ObjectId,
     nombre: String
 });
 

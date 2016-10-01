@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var HorarioSchema = new Schema({
+    institucionId: ObjectId,
     periodoLectivo: {
         type: Number,
         min: 1900

@@ -7,8 +7,9 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var GrupoSchema = new Schema({
-    nombre: String,
+    institucionId: ObjectId,
     gradoId: ObjectId,
+    nombre: String,
     directorId: ObjectId
 });
 

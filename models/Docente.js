@@ -55,11 +55,14 @@ var DocenteSchema = new Schema({
             "Director"
         ]
     },
-    fecha: Date,
     fotoURL: String,
     fechaIngreso: Date,
     grupoId: ObjectId,
-    asignaturas: array[ObjectId]
+    asignaturas: array[ObjectId],
+    fecha: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 DocenteSchema.virtual('nombre.completo').get(() => {

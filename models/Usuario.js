@@ -4,8 +4,10 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
 var UsuarioSchema = new Schema({
+    institucionId: ObjectId,
     documento: String,
     contrasena: String,
     habilitado: Boolean,
