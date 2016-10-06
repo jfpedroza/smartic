@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var config = require('./config/database'); // get db config file
 
@@ -23,6 +24,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// Use the passport package in our application
+app.use(passport.initialize());
 app.use(require('node-sass-middleware')({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
@@ -32,7 +35,11 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+
+var apiRouter = express.Router();
+apiRouter.use('/usuarios', users);
+
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -71,7 +78,10 @@ mongoose.Promise = global.Promise;
 // connect to MongoDB
 mongoose.connect(config.database)
     .then(() =>  console.log('Connection to database successful'))
-    .catch((err) => console.error(err));
+    .catch((err) => {
+        console.error(err);
+        process.exit();
+    });
 
 
 module.exports = app;
